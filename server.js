@@ -10,6 +10,10 @@ const app = express();
 //bodyParser middleware
 app.use(bodyParser.json());
 
+//use routes
+app.use('/api', items);
+
+
 //DB config
 const db = require('./config/keys').mongoURI;
 
@@ -20,8 +24,6 @@ mongoose.connect(db || 'mongodb+srv://admin:admin@mydatacluster-4usfy.mongodb.ne
 
 
 
-//use routes
-app.use('/api', items);
 
 
 //Server static assets if in production
@@ -38,7 +40,7 @@ if(process.env.NODE_ENV === 'production') {
 
 
 
-const port = process.env.Port || 5000;
+const port = process.env.PORT || 5000;
 //const port = 5000;
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
